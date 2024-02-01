@@ -7,3 +7,11 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Todo.create!(
+  [
+    { text: "勉強", completed: false },
+    { text: "掃除", completed: false },
+    { text: "洗濯", completed: false }
+  ]
+)
