@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - 'back/**'
+      - '.github/workflows/fly-deploy.yml'
 jobs:
   deploy:
     name: Deploy app
