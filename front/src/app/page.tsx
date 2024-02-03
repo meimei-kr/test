@@ -1,3 +1,5 @@
+import CreatePost from "./features/components/CreatePost";
+import { getAllPosts } from "./features/lib/action";
 import styles from "./page.module.css";
 
 type Post = {
@@ -6,21 +8,12 @@ type Post = {
   body: string;
 };
 
-const getAllPosts = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  return res.json();
-}
-
 export default async function Home() {
   const posts: Post[] = await getAllPosts();
 
   return (
     <main className={styles.container}>
+      <CreatePost />
       <ul className={styles.list}>
         {posts.map((post) => (
           <li key={post.id} className={styles.listItem}>
