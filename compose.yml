@@ -3,6 +3,8 @@ services:
     build:
       context: ./front
       dockerfile: Dockerfile
+    environment:
+      TZ: Asia/Tokyo
     volumes:
       - ./front:/app
     command: yarn dev -p 4000
@@ -17,6 +19,7 @@ services:
       dockerfile: Dockerfile.dev
     environment:
       RAILS_ENV: development
+      TZ: Asia/Tokyo
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
     volumes:
       - ./back:/app
@@ -27,6 +30,19 @@ services:
     networks:
       fixed_compose_network:
         ipv4_address: 172.27.0.3
+  worker:
+    build:
+      context: ./back
+      dockerfile: Dockerfile.dev
+    environment:
+      RAILS_ENV: development
+      TZ: Asia/Tokyo
+    command: bash -c "bundle exec rails jobs:work"
+    volumes:
+      - ./back:/app
+    networks:
+      fixed_compose_network:
+        ipv4_address: 172.27.0.4
 networks:
   fixed_compose_network:
     ipam:

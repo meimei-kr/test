@@ -9,6 +9,7 @@ export const getAllPosts = async () => {
     headers: {
       "Content-Type": "application/json",
     },
+    cache: "no-store",
   });
   return res.json();
 }

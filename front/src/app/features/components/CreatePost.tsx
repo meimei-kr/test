@@ -6,8 +6,6 @@ import { createPost } from "../lib/action";
 import styles from "./CreatePost.module.css";
 
 export default function CreatePost() {
-  unstable_noStore();
-
   const ref = useRef<HTMLFormElement>(null);
 
   return (
