@@ -30,6 +30,6 @@ module App
     config.api_only = true
 
     # Set delayed_job as adapter of ActiveJob
-    config.active_job.queue_adapter = :delayed_job
+    config.active_job.queue_adapter = :sidekiq
   end
 end

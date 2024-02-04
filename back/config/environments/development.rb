@@ -69,9 +69,9 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
 
-  # 標準出力のバッファリングを無効化
-  $stdout.sync = true
+  # # 標準出力のバッファリングを無効化
+  # $stdout.sync = true
 
-  config.logger = ActiveSupport::Logger.new($stdout)
-  config.log_level = :info
+  # config.logger = ActiveSupport::Logger.new($stdout)
+  # config.log_level = :info
 end

@@ -18,16 +18,8 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      # Redisに接続（本番環境の場合は適宜修正）
-      redis = Redis.new(url: ENV["REDIS_URL"])
-
-      # PostのIDをRedisに保存
-      redis.set("post:#{@post.id}", @post.to_json)
-
-      # 保存した値をRedisから取得
-      value = redis.get("post:#{@post.id}")
-      puts "*** #{value} ***"
-
+      # モデルのインスタンスを渡してジョブをキューに登録する
+      PostLogsJob.perform_later(@post)
       render json: @post, status: :created, location: @post
     else
       render json: @post.errors, status: :unprocessable_entity

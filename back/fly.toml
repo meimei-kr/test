@@ -43,4 +43,4 @@ console_command = '/rails/bin/rails console'
 
 [processes]
   app = "bin/rails server"
-  worker = "bundle exec rails jobs:work"
+  worker = "bundle exec sidekiq"
