@@ -40,12 +40,9 @@ services:
     environment:
       RAILS_ENV: development
       TZ: Asia/Tokyo
-      REDIS_URL: "redis://redis:6379"
-    command: bash -c "bundle exec sidekiq"
+    command: bash -c "bundle exec rake solid_queue:start"
     volumes:
       - ./back:/app
-    depends_on:
-      - redis
     networks:
       fixed_compose_network:
         ipv4_address: 172.27.0.4

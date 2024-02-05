@@ -29,7 +29,7 @@ module App
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    # Set delayed_job as adapter of ActiveJob
-    config.active_job.queue_adapter = :sidekiq
+    # Set Solid Queue as Active Job adapeter
+    config.active_job.queue_adapter = :solid_queue
   end
 end
