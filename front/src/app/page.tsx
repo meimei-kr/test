@@ -1,6 +1,6 @@
-import CreatePost from "./features/components/CreatePost";
-import { getAllPosts } from "./features/lib/action";
-import styles from "./page.module.css";
+import CreatePost from "@/app/features/components/CreatePost/CreatePost";
+import { getAllPosts } from "@/app/features/lib/fetchPost";
+import styles from "@/app/page.module.css";
 
 type Post = {
   id: number;

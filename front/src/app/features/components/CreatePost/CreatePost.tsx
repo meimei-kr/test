@@ -1,9 +1,8 @@
 "use client";
 
-import { unstable_noStore } from "next/cache";
 import { useRef } from "react";
-import { createPost } from "../lib/action";
-import styles from "./CreatePost.module.css";
+import { createPost } from "@/app/features/lib/fetchPost";
+import styles from "@/app/features/components/CreatePost/CreatePost.module.css";
 
 export default function CreatePost() {
   const ref = useRef<HTMLFormElement>(null);
