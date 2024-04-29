@@ -11,6 +11,9 @@ services:
     command: yarn dev -p 4000
     ports:
       - "4000:4000"
+    networks:
+      fixed_compose_network:
+        ipv4_address: 172.27.0.2
   back:
     build:
       context: ./back
@@ -27,6 +30,9 @@ services:
       - "3000:3000"
     tty: true
     stdin_open: true
+    networks:
+      fixed_compose_network:
+        ipv4_address: 172.27.0.3
   db:
     image: postgres:16.2
     environment:
@@ -37,6 +43,15 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      fixed_compose_network:
+        ipv4_address: 172.27.0.4
+networks:
+  fixed_compose_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.27.0.0/24
 volumes:
   front_node_modules:
   postgres_data:
