@@ -36,5 +36,7 @@ module App
     # Set locale
     config.i18n.default_locale = :ja
     config.i18n.available_locales = [:en, :ja]
+
+    config.active_job.queue_adapter = :solid_queue
   end
 end

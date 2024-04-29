@@ -46,6 +46,19 @@ services:
     networks:
       fixed_compose_network:
         ipv4_address: 172.27.0.4
+  worker:
+    build:
+      context: ./back
+      dockerfile: Dockerfile.dev
+    environment:
+      RAILS_ENV: development
+      TZ: Asia/Tokyo
+    command: bash -c "bundle exec rake solid_queue:start"
+    volumes:
+      - ./back:/app
+    networks:
+      fixed_compose_network:
+        ipv4_address: 172.27.0.5
 networks:
   fixed_compose_network:
     ipam:

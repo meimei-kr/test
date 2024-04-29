@@ -18,6 +18,8 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
+      # モデルのインスタンスを渡してジョブをキューに登録する
+      PostLogsJob.perform_later(@post)
       render json: @post, status: :created, location: @post
     else
       render json: @post.errors, status: :unprocessable_entity
