@@ -21,11 +21,13 @@ services:
     environment:
       RAILS_ENV: development
       TZ: Asia/Tokyo
+      REDIS_URL: "redis://redis:6379"
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
     volumes:
       - ./back:/app
     depends_on:
       - db
+      - redis
     ports:
       - "3000:3000"
     tty: true
@@ -59,6 +61,15 @@ services:
     networks:
       fixed_compose_network:
         ipv4_address: 172.27.0.5
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/data:/data
+    networks:
+      fixed_compose_network:
+        ipv4_address: 172.27.0.6
 networks:
   fixed_compose_network:
     ipam:
